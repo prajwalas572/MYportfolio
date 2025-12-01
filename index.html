@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prajwal's Portfolio</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Base Styles ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: rgb(0, 0, 33);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== Navbar ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      padding: 0 10%;
+      background-color: rgb(18, 18, 62);
+      z-index: 1000;
+    }
+
+    nav.sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .left {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .right ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .right ul li {
+      list-style: none;
+      margin: 0 15px;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: rgb(170, 107, 228);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: rgb(18, 18, 62);
+      }
+
+      .right.open {
+        display: flex;
+      }
+
+      .right ul {
+        flex-direction: column;
+      }
+
+      .right ul li {
+        margin: 15px 0;
+      }
+    }
+
+    /* ===== Hero Section ===== */
+    .first {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 80px 0;
+      flex-wrap: wrap;
+      padding: 0 10%;
+    }
+
+    .first>div {
+      width: 40%;
+    }
+
+    .ls {
+      font-size: 3rem;
+      margin: 70px 0;
+    }
+
+    .purple {
+      color: rgb(170, 107, 228);
+    }
+
+    #element {
+      color: rgb(170, 107, 228);
+    }
+
+    .rs img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(170, 107, 228, 0.3);
+    }
+
+    /* Resume Button */
+    .btn {
+      display: inline-block;
+      background-color: rgb(170, 107, 228);
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: 500;
+      margin-top: 20px;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 25px;
+    }
+
+    .btn:hover {
+      background-color: rgb(140, 80, 210);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .first {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .first>div {
+        width: 80%;
+      }
+
+      .ls {
+        font-size: 2rem;
+      }
+    }
+
+    /* ===== Sections ===== */
+    .section-title {
+      font-size: 3rem;
+      color: rgb(170, 107, 228);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 0 10%;
+    }
+
+    .skill-box {
+      background: rgb(18, 18, 62);
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .skill-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(170, 107, 228, 0.4);
+    }
+
+    /* Projects */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 0 10%;
+    }
+
+    .project-card {
+      background: rgba(18, 18, 62, 0.8);
+      border: 1px solid rgba(170, 107, 228, 0.5);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(170, 107, 228, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px rgba(170, 107, 228, 0.5);
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-img img {
+      transform: scale(1.05);
+    }
+
+    .project-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .project-info h3 {
+      color: rgb(170, 107, 228);
+      margin-bottom: 10px;
+    }
+
+    .project-info p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    .project-info .btn {
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 5px;
+      background: rgb(170, 107, 228);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .project-info .btn:hover {
+      background: rgb(140, 80, 210);
+      transform: scale(1.05);
+    }
+
+    /* Contact Section */
+    .contact-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10%;
+      text-align: center;
+    }
+
+    .contact-box p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .contact-box a {
+      color: rgb(170, 107, 228);
+      font-size: 1.2rem;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+
+    .contact-box a:hover {
+      color: rgb(140, 80, 210);
+    }
+
+    @media (max-width: 768px) {
+      .contact-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Navbar ===== -->
+  <header>
+    <nav id="navbar">
+      <div class="left">Prajwal's Portfolio</div>
+      <div class="hamburger" id="hamburger">☰</div>
+      <div class="right" id="nav-links">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <main>
+    <section class="first" id="home">
+      <div class="ls">
+        Hi, it's me <span class="purple">Prajwal AS</span>
+        <div>and I am a passionate</div>
+        <div><span id="element"></span></div>
+        <a href="D:\PROJECTS\My portfolio\index1.html\FirstName_LastName_Resume (2).pdf" class="btn" download>📄 Download Resume</a>
+      </div>
+      <div class="rs">
+        <img src="D:\PROJECTS\My portfolio\index1.html\hi.jpg.png" alt="Prajwal's photo">
+      </div>
+    </section>
+
+    <!-- ===== Skills Section ===== -->
+    <section id="skills" style="padding:80px 0; background-color: rgb(0,0,33);">
+      <h1 class="section-title">My Skills</h1>
+      <div class="skills-container">
+        <div class="skill-box">
+          <h3>🎨 Graphic Design</h3>
+          <p>Photoshop, Illustrator, Canva</p>
+        </div>
+        <div class="skill-box">
+          <h3>🎬 Video Editing</h3>
+          <p>Premiere Pro, CapCut, After Effects</p>
+        </div>
+        <div class="skill-box">
+          <h3>💻 Web Development</h3>
+          <p>HTML, CSS, JavaScript</p>
+        </div>
+        <div class="skill-box">
+          <h3>⚙ Tech Skills</h3>
+          <p>UI/UX Basics, Responsive Design</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects Section ===== -->
+    <section id="projects" style="padding:80px 0; background-color: rgb(0,0,33);">
+      <h1 class="section-title">Projects</h1>
+      <div class="projects-container">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="assets/project1.jpg" alt="Portfolio Project">
+          </div>
+          <div class="project-info">
+            <h3>Portfolio Website</h3>
+            <p>Responsive portfolio website using HTML, CSS, and JS.</p>
+            <a href="#" class="btn">View Project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section id="contact" style="padding:80px 0; background-color: rgb(0,0,33);">
+      <h1 class="section-title">Contact Me</h1>
+      <div class="contact-box">
+        <p>Email: <a href="mailto:prajwalas572@gmail.com">prajwalas572@gmail.com</a></p>
+        <p>Phone: <a href="tel:+917259244734">+91 7259244734</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/prajwal" target="_blank">linkedin.com/in/prajwal</a></p>
+        <p>GitHub: <a href="https://github.com/prajwal" target="_blank">github.com/prajwal</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Typed.js ===== -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    new Typed('#element', {
+      strings: ['Graphic designer', 'Video editor', 'Web developer'],
+      typeSpeed: 50,
+      loop: true
+    });
+  </script>
+
+  <!-- ===== Navbar JS ===== -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (pageYOffset >= sectionTop) current = section.getAttribute("id");
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) link.classList.add("active");
+      });
+    });
+
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("sticky", window.scrollY > 50);
+    });
+
+    const hamburger = document.getElementById("hamburger");
+    const navRight = document.getElementById("nav-links");
+    hamburger.addEventListener("click", () => {
+      navRight.classList.toggle("open");
+    });
+  </script>
+</body>
+</html>
